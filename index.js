@@ -12,6 +12,7 @@ fetch("https://striveschool-api.herokuapp.com/books")
 })
 .then((arrayBook) =>{
     const row = document.querySelector(".row")
+    const a = [];
     arrayBook.forEach(book => {
         const col = document.createElement("div")
         col.className = "col-6 col-md-4 col-lg-3 mb-3"
@@ -42,13 +43,22 @@ fetch("https://striveschool-api.herokuapp.com/books")
         shop.className = "btn btn-outline-primary position-absolute"
         shop.innerText = "Add to cart"
         shop.style = "bottom: 10px; right: 15px"
-        shop.onclick = (e) =>{
+        shop.onclick = () =>{
             const ul = document.querySelector("ul")
             const li = document.createElement("li")
-            localStorage.setItem("book", e.value)
-            li.innerText = "ciao"
+            li.className = "list-group-item";
+            a.push(book.title)
+            console.log(a);
+            localStorage.setItem("bookArray", JSON.stringify(a))
+            const item = JSON.parse(localStorage.getItem("bookArray"))
+            for (let i = 0; i < item.length; i++) {
+                const element = item[i];
+               li.innerText = `${element}`;
+                
+               ul.appendChild(li);
+                
+            }
 
-            ul.appendChild(li);
         }
 
 
