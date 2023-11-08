@@ -11,18 +11,17 @@ fetch("https://striveschool-api.herokuapp.com/books")
     return  response.json();
 })
 .then((arrayBook) =>{
-    console.log(arrayBook);
     const row = document.querySelector(".row")
     arrayBook.forEach(book => {
         const col = document.createElement("div")
         col.className = "col-6 col-md-4 col-lg-3 mb-3"
         const card = document.createElement("div")
         card.className = "card"
-        card.style.minHeight = "548px" 
+        card.style.minHeight = "420px" 
         const img = document.createElement("img");
         img.src = book.img
-        img.className = "card-img-top"
-        img.style.maxHeight = "370px" 
+        img.className = "card-img-top img-fluid"
+        img.style = "object-fit: cover ; height: 260px";
         const body = document.createElement("div")
         body.className = "card-body position-relative"
         const h4 = document.createElement("h4");
@@ -39,10 +38,23 @@ fetch("https://striveschool-api.herokuapp.com/books")
         button.onclick = () =>{
             col.classList.add("d-none")
         }
+        const shop = document.createElement("button");
+        shop.className = "btn btn-outline-primary position-absolute"
+        shop.innerText = "Add to cart"
+        shop.style = "bottom: 10px; right: 15px"
+        shop.onclick = (e) =>{
+            const ul = document.querySelector("ul")
+            const li = document.createElement("li")
+            localStorage.setItem("book", e.value)
+            li.innerText = "ciao"
+
+            ul.appendChild(li);
+        }
 
 
         body.appendChild(h4)
         body.appendChild(p)
+        body.appendChild(shop)
         body.appendChild(button)
         card.appendChild(img)
         card.appendChild(body)
@@ -51,17 +63,3 @@ fetch("https://striveschool-api.herokuapp.com/books")
     });
 })
 .catch(error => console.log("CATCH BLOCK", error))
-
-
-/* const cancel =(e) =>{
-    console.log(e)
-    const elimina = document.querySelectorAll("button")
-    console.log(elimina);
-    for (let i = 0; i < elimina.length; i++) {
-        const element = elimina[i];
-        console.log(elimina[i], i);
-        if (e.target() === element) {
-            e.target().remove()
-        }
-    }
-} */
