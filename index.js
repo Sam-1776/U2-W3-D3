@@ -37,7 +37,7 @@ fetch("https://striveschool-api.herokuapp.com/books")
         button.style.bottom = "10px"
         button.innerText = "Scarta"
         button.onclick = () =>{
-            col.classList.add("d-none")
+            col.remove()
         }
         const shop = document.createElement("button");
         shop.className = "btn btn-outline-primary position-absolute"
