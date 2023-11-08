@@ -33,7 +33,7 @@ fetch("https://striveschool-api.herokuapp.com/books")
         p.className = "card-text"
         p.innerText = book.price + "€"
         const button = document.createElement("button")
-        button.className = "btn btn-outline-primary position-absolute"
+        button.className = "btn btn-outline-danger position-absolute"
         button.style.bottom = "10px"
         button.innerText = "Scarta"
         button.onclick = () =>{
