@@ -44,12 +44,11 @@ fetch("https://striveschool-api.herokuapp.com/books")
         shop.innerText = "Add to cart"
         shop.style = "bottom: 10px; right: 15px"
         shop.onclick = () =>{
+            a.push(book.title)
+            localStorage.setItem("bookArray", JSON.stringify(a))
             const ul = document.querySelector("ul")
             const li = document.createElement("li")
             li.className = "list-group-item";
-            a.push(book.title)
-            console.log(a);
-            localStorage.setItem("bookArray", JSON.stringify(a))
             const item = JSON.parse(localStorage.getItem("bookArray"))
             for (let i = 0; i < item.length; i++) {
                 const element = item[i];
@@ -70,6 +69,28 @@ fetch("https://striveschool-api.herokuapp.com/books")
         card.appendChild(body)
         col.appendChild(card)
         row.appendChild(col)
+
+       
+        
+        
+        
     });
+    loadPage()
+
 })
 .catch(error => console.log("CATCH BLOCK", error))
+
+const loadPage = () =>{
+    const ul = document.querySelector("ul")
+    const item = JSON.parse(localStorage.getItem("bookArray"))
+    console.log(item);
+    for (let i = 0; i < item.length; i++) {
+                const li = document.createElement("li")
+                li.className = "list-group-item";
+                const element = item[i];
+               li.innerText = `${element}`;
+               ul.appendChild(li);
+                
+            }
+
+}
