@@ -18,21 +18,27 @@ fetch("https://striveschool-api.herokuapp.com/books")
         col.className = "col-6 col-md-4 col-lg-3 mb-3"
         const card = document.createElement("div")
         card.className = "card"
+        card.style.minHeight = "548px" 
         const img = document.createElement("img");
         img.src = book.img
         img.className = "card-img-top"
-        img.style.maxHeight = "350px" 
+        img.style.maxHeight = "370px" 
         const body = document.createElement("div")
-        body.className = "card-body"
+        body.className = "card-body position-relative"
         const h4 = document.createElement("h4");
         h4.className = "card-title"
+        h4.style = "display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2;  overflow: hidden;" ; 
         h4.innerText = book.title
         const p = document.createElement("p")
         p.className = "card-text"
         p.innerText = book.price + "€"
         const button = document.createElement("button")
-        button.className = "btn btn-outline-primary"
+        button.className = "btn btn-outline-primary position-absolute"
+        button.style.bottom = "10px"
         button.innerText = "Scarta"
+        button.onclick = () =>{
+            col.classList.add("d-none")
+        }
 
 
         body.appendChild(h4)
@@ -45,3 +51,17 @@ fetch("https://striveschool-api.herokuapp.com/books")
     });
 })
 .catch(error => console.log("CATCH BLOCK", error))
+
+
+/* const cancel =(e) =>{
+    console.log(e)
+    const elimina = document.querySelectorAll("button")
+    console.log(elimina);
+    for (let i = 0; i < elimina.length; i++) {
+        const element = elimina[i];
+        console.log(elimina[i], i);
+        if (e.target() === element) {
+            e.target().remove()
+        }
+    }
+} */
