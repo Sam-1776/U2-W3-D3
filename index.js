@@ -86,23 +86,24 @@ fetch("https://striveschool-api.herokuapp.com/books")
 const loadPage = () =>{
     const ul = document.querySelector("ul")
     const item = JSON.parse(localStorage.getItem("bookArray"))
-    console.log(item);
-    for (let i = 0; i < item.length; i++) {
-                const li = document.createElement("li")
-                li.className = "list-group-item d-flex justify-content-between align-items-center";
-                const element = item[i];
-               li.innerText = `${element}`;
-               const delet = document.createElement("button")
-               delet.innerText = "X"
-               delet.className = "btn btn-outline-danger"
-
-               delet.onclick = () =>{
-                li.remove()
-               }
-
-               li.appendChild(delet)
-               ul.appendChild(li);
-                
-            }
+    if (item) { 
+        for (let i = 0; i < item.length; i++) {
+                    const li = document.createElement("li")
+                    li.className = "list-group-item d-flex justify-content-between align-items-center";
+                    const element = item[i];
+                   li.innerText = `${element}`;
+                   const delet = document.createElement("button")
+                   delet.innerText = "X"
+                   delet.className = "btn btn-outline-danger"
+    
+                   delet.onclick = () =>{
+                    li.remove()
+                   }
+    
+                   li.appendChild(delet)
+                   ul.appendChild(li);
+                    
+                }
+    }
 
 }
