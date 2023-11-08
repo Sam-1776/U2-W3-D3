@@ -48,11 +48,19 @@ fetch("https://striveschool-api.herokuapp.com/books")
             localStorage.setItem("bookArray", JSON.stringify(a))
             const ul = document.querySelector("ul")
             const li = document.createElement("li")
-            li.className = "list-group-item";
+            li.className = "list-group-item d-flex justify-content-between align-items-center";
             const item = JSON.parse(localStorage.getItem("bookArray"))
             for (let i = 0; i < item.length; i++) {
                 const element = item[i];
                li.innerText = `${element}`;
+               const delet = document.createElement("button")
+               delet.innerText = "X"
+               delet.className = "btn btn-outline-danger"
+
+               delet.onclick = () =>{
+                li.remove()
+               }
+               li.appendChild(delet)
                 
                ul.appendChild(li);
                 
@@ -69,11 +77,6 @@ fetch("https://striveschool-api.herokuapp.com/books")
         card.appendChild(body)
         col.appendChild(card)
         row.appendChild(col)
-
-       
-        
-        
-        
     });
     loadPage()
 
@@ -86,9 +89,18 @@ const loadPage = () =>{
     console.log(item);
     for (let i = 0; i < item.length; i++) {
                 const li = document.createElement("li")
-                li.className = "list-group-item";
+                li.className = "list-group-item d-flex justify-content-between align-items-center";
                 const element = item[i];
                li.innerText = `${element}`;
+               const delet = document.createElement("button")
+               delet.innerText = "X"
+               delet.className = "btn btn-outline-danger"
+
+               delet.onclick = () =>{
+                li.remove()
+               }
+
+               li.appendChild(delet)
                ul.appendChild(li);
                 
             }
